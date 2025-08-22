@@ -45,9 +45,9 @@ Welcome to your Data Modernization Workshop! We've prepared a seamless environme
 
 ## Accessing Your Lab Environment
  
-Once you're ready to dive in, your virtual machine and **Lab Guide** will be right at your fingertips within your web browser.
+Once you're ready to dive in, your virtual machine and **Guide** will be right at your fingertips within your web browser.
 
-   ![](./media/GS6.png)
+   ![](./media/env-09009.png)
 
 ### Virtual Machine & Lab Guide
  
@@ -57,19 +57,19 @@ Your virtual machine is your workhorse throughout the workshop. The lab guide is
  
 To get a better understanding of your lab resources and credentials, navigate to the **Environment** tab.
 
-   ![](./media/env-01.png)
+   ![](./media/enc-090.png)
  
 ## Utilizing the Split Window Feature
  
 For convenience, you can open the lab guide in a separate window by selecting the **Split Window** button from the Top right corner.
  
-   ![](./media/GS8.png)
+   ![](./media/env-011-0-1.png)
  
 ## Managing Your Virtual Machine
  
 Feel free to start, stop, or restart your virtual machine as needed from the **Resources** tab. Your experience is in your hands!
  
-  ![](./media/GS5.png)
+  ![](./media/env-011-0.png)
 
 ## Lab Guide Zoom In/Zoom Out
 
@@ -108,6 +108,20 @@ To adjust the zoom level for the environment page, click the **A↕ : 100%** ico
 6. If you see the pop-up **You have free Azure Advisor recommendations!**, close the window to continue the lab.
 
 7. If a **Welcome to Microsoft Azure** popup window appears, click **Maybe Later** to skip the tour.
+
+## Start the SQL Instance
+
+1. Inside the **Azure Portal**, select **Resource groups**. Under the **Resource groups**, select **SQLMI-shared-RG**.
+
+   ![](./media/sqlmi.png)
+
+1. On the **SQLMI-shared-RG** resource group, select **sqlmi--cus** SQL managed instance.
+
+   ![](./media/sqlmi1.png)
+
+1. On the **sqlmi--cus**, select **Start**, since it may take some time for it to start.
+
+   ![](./media/sqlmi2.png)
    
 ## Support Contact
 

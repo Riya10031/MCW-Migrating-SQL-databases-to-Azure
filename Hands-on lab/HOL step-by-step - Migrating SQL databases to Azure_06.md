@@ -30,19 +30,19 @@ In this task, you create a new SMB network share on the <inject key="SQLVM Name"
 
    ![In Windows Explorer, Windows (C:) is selected under Computer in the left-hand tree view, and New folder is highlighted in the top menu.](media/windows-explorer-new-folder.png "Windows Explorer")
 
-3. Name the new folder **dms-backups**, then right-click the folder and select **Share with** and **Specific people...** in the context menu.
+3. Name the new folder **dms-backups**, then right-click the folder and select **Share with (1)** and **Specific people... (2)** in the context menu.
 
    ![In Windows Explorer, the context menu for the dms-backups folder is displayed, with Share with and Specific people highlighted.](media/windows-explorer-folder-share-with.png "Windows Explorer")
 
-4. In the File Sharing dialog, ensure the **sqlmiuser** is listed with a **Read/Write** permission level, and then select **Share**.
+4. In the File Sharing dialog, ensure the **sqlmiuser (1)** is listed with a **Read/Write (2)** permission level, and then select **Share (3)**.
 
-   ![In the File Sharing dialog, the sqlmiuser is highlighted and assigned a permission level of Read/Write.](https://raw.githubusercontent.com/microsoft/MCW-Migrating-SQL-databases-to-Azure/master/Hands-on%20lab/media/file-sharing.png)
+   ![In the File Sharing dialog, the sqlmiuser is highlighted and assigned a permission level of Read/Write.](media/filesharing.png)
 
 5. In the **Network discovery and file sharing** dialog, select the default value of **No, make the network that I am connected to a private network**.
 
    ![In the Network discovery and file sharing dialog, No, make the network that I am connected to a private network is highlighted.](media/network-discovery-and-file-sharing.png "Network discovery and file sharing")
 
-6. Back on the File Sharing dialog, note the shared folder's path, ```\\SQL2008-SUFFIX\dms-backups```, and select **Done** to complete the sharing process.
+6. Back on the File Sharing dialog, note the shared folder's path, ```\\SQL2008-<inject key="SUFFIX" enableCopy="false"/>\dms-backups```, and select **Done** to complete the sharing process.
 
    ![The Done button is highlighted on the File Sharing dialog.](media/EX2-Task1-S6.png "File Sharing")
 
@@ -87,11 +87,11 @@ To perform online data migrations, DMS looks for database and transaction log ba
 
    ![SQL Server is entered into the Windows Start menu search box, and Microsoft SQL Server Management Studio 17 is highlighted in the search results.](media/start-menu-ssms-17.png "Windows start menu search")
 
-2. In the SSMS **Connect to Server** dialog, enter <inject key="SQLVM Name" /> into the Server name box, ensure **Windows Authentication** is selected, and then select **Connect**.
+2. In the SSMS **Connect to Server** dialog, enter **<inject key="SQLVM Name" /> (1)** into the Server name box, ensure **Windows Authentication (2)** is selected, and then select **Connect (3)**.
 
-   ![The SQL Server Connect to Search dialog is displayed, with SQL2008 entered into the Server name and Windows Authentication selected.](https://raw.githubusercontent.com/CloudLabs-MCW/MCW-Migrating-SQL-databases-to-Azure/fix/Hands-on%20lab/media/ssms.png "Connect to Server")
+   ![The SQL Server Connect to Search dialog is displayed, with SQL2008 entered into the Server name and Windows Authentication selected.](media/ssms.png "Connect to Server")
 
-3. Once connected, expand **Databases** under **<inject key="SQLVM Name" enableCopy="false"/>** in the Object Explorer, and then right-click the **WideWorldImporters** database. In the context menu, select **Tasks** and then **Back Up...**
+3. Once connected, expand **Databases** under **<inject key="SQLVM Name" enableCopy="false"/>** in the Object Explorer, and then right-click the **WideWorldImporters (1)** database. In the context menu, select **Tasks (2)** and then **Back Up... (3)**
 
    ![In the SSMS Object Explorer, the context menu for the WideWorldImporters database is displayed, with Tasks and Back Up... highlighted.](https://raw.githubusercontent.com/CloudLabs-MCW/MCW-Migrating-SQL-databases-to-Azure/fix/Hands-on%20lab/media/dm5.png "SSMS Backup")
 
@@ -107,7 +107,7 @@ To perform online data migrations, DMS looks for database and transaction log ba
 
    ![The Browse button is highlighted in the Select Backup Destination dialog.](media/ssms-select-backup-destination.png "Select Backup Destination")
 
-7. In the Location Database Files dialog, select the `C:\dms-backups` folder, enter **WideWorldImporters.bak** into the File name field, and then select **OK**.
+7. In the Location Database Files dialog, select the `C:\dms-backups` **(1)** folder, enter **WideWorldImporters.bak (2)** into the File name field, and then select **OK (3)**.
 
    ![In the Select the file pane, the C:\dms-backups folder is selected and highlighted, and WideWorldImporters.bak is entered into the File name field.](media/ssms-locate-database-files.png "Location Database Files")
 
@@ -115,10 +115,12 @@ To perform online data migrations, DMS looks for database and transaction log ba
 
    ![The OK button is highlighted on the Select Backup Destination dialog and C:\dms-backups\WideWorldImporters.bak is entered in the File name textbox.](media/ssms-backup-destination.png "Backup Destination")
 
-9. In the Back Up Database dialog, select **Media Options** in the Select a page pane, and then set the following:
+9. In the Back Up Database dialog, select **Media Options (1)** in the Select a page pane, and then set the following:
 
-   - Select **Back up to the existing media set** and then select **Overwrite all existing backup sets**.
-   - Under Reliability, check the box for **Perform checksum before writing to media**. A checksum is required by DMS when using the backup to restore the database to SQL MI.
+   - Select **Back up to the existing media set** and then select **Overwrite all existing backup sets (2)**.
+   - Under Reliability, check the box for **Perform checksum before writing to media (3)**. A checksum is required by DMS when using the backup to restore the database to SQL MI.
+
+   - Select **OK**
 
       ![In the Back Up Database dialog, the Media Options page is selected, and Overwrite all existing backup sets and Perform checksum before writing to media are selected and highlighted.](media/ssms-back-up-database-media-options.png "Back Up Database")
 
@@ -127,6 +129,13 @@ To perform online data migrations, DMS looks for database and transaction log ba
 11. You will receive a message when the backup is complete. Select **OK**.
 
     ![Screenshot of the dialog confirming the database backup was completed successfully.](media/ssms-backup-complete.png "Backup complete")
+
+
+> **Congratulations** on completing the task! Now, it's time to validate it. Here are the steps:
+> - If you receive a success message, you can proceed to the next task.
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide. 
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help you out.
+<validation step="ceaf80fd-ad7c-4fc1-9f61-9c1f7744f59d" />
 
 ### Task 4: Retrieve SQL MI and SQL Server 2008 VM connection information
 
@@ -138,35 +147,50 @@ In this task, you use the Azure Cloud shell to retrieve the information necessar
 
 2. In the Cloud Shell window that opens at the bottom of your browser window, select **PowerShell**.
 
-   ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/cloud-shell-select-powershell.png "Azure Cloud Shell")
+   ![In the Welcome to Azure Cloud Shell window, PowerShell is highlighted.](media/newps.png "Azure Cloud Shell")
 
-3. If prompted about not having a storage account mounted, click on **Show advanced settings**. Select Create New under Storage account and provide values as below: 
-  
-      - **Resource Group**: Select **Use existing** then <inject key="Resource Group Name" enableCopy="false"/>
-      - **Storage account**: **storage<inject key="Suffix" enableCopy="false"/>**
-      - **File Share**: **blob**
+3. On **Getting started** pop-up, select **Mount storage account (1)**, under **Storage account subscription** select the **subscription (2)**, and select **Apply (3)**.
 
-         ![This is a screenshot of the cloud shell opened in a browser window. Powershell was selected.](media/b4-image36.png "Azure Cloud Shell")
+      ![This is a screenshot of the cloud shell opened in a browser window. Powershell was selected.](media/newps1.png "Azure Cloud Shell")
 
-4. After a moment, a message is displayed that you have successfully requested a Cloud Shell, and you are presented with a PS Azure prompt.
+4. On the **Mount storage account** pane, select **I want to create a storage account (1)**, and select **Next (2)**. 
 
-   ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/cloud-shell-ps-azure-prompt.png "Azure Cloud Shell")
+   ![This is a screenshot of the cloud shell opened in a browser window. Powershell was selected.](media/newps2.png "Azure Cloud Shell")
 
-5. At the prompt, retrieve the public IP address of the SqlSerer2008 VM. This IP address will be used to connect to the database on that server. Enter the following PowerShell command, **replacing `<your-resource-group-name>`** in the resource group name variable with the name of your resource group: <inject key="Resource Group Name" /> and vm name with <inject key="SQLVM Name" />. 
+5. On the **Create a storage account** pane, enter the following:
 
+   - Subscription: Keep it as default **(1)**
 
-   ```PowerShell
-   $resourceGroup = "<your-resource-group-name>"
-   az vm list-ip-addresses -g $resourceGroup -n VMNAME --output table
-   ```
+   - Resource Group: Select Use existing then **hands-on-lab-<inject key="SUFFIX" enableCopy="false"/> (2)**
 
-   > **Note**
-   >
-   > If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
+   - Storage account: **storage<inject key="SUFFIX" enableCopy="false"/> (3)**
+
+   - File Share: **blob (4)**
+
+   - Region: Select **East US (5)**
+
+   - Select **Create (6)**
+
+      ![This is a screenshot of the cloud shell opened in a browser window. Powershell was selected.](media/csa.png "Azure Cloud Shell")
+
+5. After a moment, a message is displayed that you have successfully requested a Cloud Shell, and you are presented with a PS Azure prompt.
+
+   ![In the Azure Cloud Shell dialog, a message is displayed that requesting a Cloud Shell succeeded, and the PS Azure prompt is displayed.](media/ps2.png "Azure Cloud Shell")
+
+5. At the prompt, retrieve the public IP address of the SqlSerer2008 VM. This IP address will be used to connect to the database on that server.
+
+      ```PowerShell
+      $resourceGroup = "<inject key="Resource Group Name" />"
+      az vm list-ip-addresses -g $resourceGroup -n <inject key="SQLVM Name" /> --output table
+      ```
+
+      > **Note**
+      >
+      > If you have multiple Azure subscriptions, and the account you are using for this hands-on lab is not your default account, you may need to run `az account list --output table` at the Azure Cloud Shell prompt to output a list of your subscriptions, then copy the Subscription Id of the account you are using for this lab and then run `az account set --subscription <your-subscription-id>` to set the appropriate account for the Azure CLI commands.
 
 6. Within the output, locate and copy the value of the `ipAddress` property below the `PublicIPAddresses` field. Paste the value into a text editor, such as Notepad.exe, for later reference.
 
-   ![The output from the az vm list-ip-addresses command is displayed in the Cloud Shell, and the public IP address for the Sql2008VM is highlighted.](https://raw.githubusercontent.com/CloudLabs-MCW/MCW-Migrating-SQL-databases-to-Azure/fix/Hands-on%20lab/media/vmip.png "Azure Cloud Shell")
+   ![The output from the az vm list-ip-addresses command is displayed in the Cloud Shell, and the public IP address for the Sql2008VM is highlighted.](./media/ps3.png "Azure Cloud Shell")
 
 7. Leave the Azure Cloud Shell open for the next task.
 
@@ -178,38 +202,44 @@ In this task, you create a new online data migration project in DMS for the `Wid
 
    ![In the Windows Start menu, "data migration" is entered into the search bar, and Microsoft Data Migration Assistant is highlighted in the Windows start menu search results.](media/Ex1-Task2-S1.png "Data Migration Assistant")
 
-2. In **Step 1: Database for assessment** blade, select **widewordimporters**, click on **Next**. 
+2. In **Step 1: Database for assessment**, select the following:
 
-   ![The new project icon is highlighted in DMA.](media/Ex1-Task2-S2.png "New DMA project")
+   - **Is your source SQL Server instance tracked in Azure**: **No (1)**
+   - **Do you want to track the migration process in Azure Portal?**: **No (2)**
+   - select **WideWorldImporters (3)**, click on **Next (4)**. 
 
-3. In **Step 2: Assessment summary and SKU recommendation (1)**, you will view the summary and SKU recommendations for your SQL server. Click on **Next (2)**. 
+      ![The new project icon is highlighted in DMA.](media/sqlmi-01.png "New DMA project")
+
+3. In **Step 2: Assessment summary and SKU recommendations (1)**, you will view the summary and SKU recommendations for your SQL server. Click on **Next (2)**. 
 
    ![The new project settings for doing a SQL Server to Azure SQL Database migration assessment are entered into the dialog.](media/E1T2S3.png "New project settings")
 
-4. In **Step 3: Target Platform and Assessment Results**, Select **Azure SQL Managed Instance (1)** from the drop down. Then select **WideWorldImporters** under database, checkbox the **WideWorldImporters** under database, and Click on the **Select** button.
+4. In **Step 3: Target Platform and Assessment Results**, Select **Azure SQL Managed Instance (1)** from the drop down. Then select **WideWorldImporters** under database, checkbox the **WideWorldImporters (2)** under database, and Click on the **Next (3)** button.
 
-   ![](media/Ex2-Task5-S4.png)
+   ![](media/sqlmi-0090.png)
 
 5. In **Step 4: Azure SQL target** blade, click on **Link account**, and click on **Add an account** it will redirect to a web page, login using your below **Azure credentials** once your account has been added successfully! Go back to the Azure Data Studio, and click on **close**. 
   
    - **Email/Username**: <inject key="AzureAdUserEmail"></inject>
    - **Password**: <inject key="AzureAdUserPassword"></inject>
+
+      ![](media/azure0creds.png )
   
 6. The field will be populated with the details and click on **Next**. 
 
    ![](media/E2T5S6.png )
    
-7. In **Step 4: Azure Database Migration Service** blade, select **Online migration**, select the location of the database backups to use during migration select **My database backups are on a network share** and Click on **Create new** under Azure Database Migration Service.
+7. In **Step 5: Azure Database Migration Service** blade, select **Online migration (1)**, select the location of the database backups to use during migration select **My database backups are on a network share (2)** and Click on **Create new (3)** under Azure Database Migration Service.
 
-   ![](media/Ex2-Task5-S7.png) 
+   ![](media/sqlmi0909090.png) 
    
-8. Under **Create Azure Database Migration Service** page, select **hands-on-lab-<inject key="Suffix" />** from the drop-down menu, enter the name as **wwi-sqldms**, and click on **create**.
+8. Under **Create Azure Database Migration Service** page, select **hands-on-lab-<inject key="Suffix" /> (1)** from the drop-down menu, enter the name as **wwi-sqldms (2)**, and click on **create (3)**.
   
-   ![](media/Ex2-Task5-S8.png) 
+   ![](media/hands-on-labs.png) 
 
-9. After the resources have been created you can see similar output as shown in the below screenshot. Copy any of the **Authentication keys** to the notepad as it will be used later in the task, minimize the **Azure Data Studio**.  
+9. After the resources have been created select **I want to setup self-hosted integration runtime on another Windows machine that is not my local machine. (1)** You can see similar output as shown in the below screenshot. Copy any of the **Authentication keys (2)** to the notepad as it will be used later in the task, minimize the **Azure Data Studio**.  
 
-   ![](media/Ex2-Task5-add.png)
+   ![](media/virtualmachine-01.png)
    
    > **Note**: Don't close/cancel Azure Data Studio.
 
